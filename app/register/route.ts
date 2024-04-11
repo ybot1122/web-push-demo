@@ -1,4 +1,4 @@
-import querystring from 'node:querystring';
+import { kv } from "@vercel/kv";
 
 export const dynamic = 'force-dynamic'
 
@@ -18,16 +18,13 @@ export async function POST(request: Request) {
 }
 
 export async function GET(request: Request) {
-
-    // TODO: store the subscription
     const urlParams = new URLSearchParams(request.url);
     const subscriptionString:string = urlParams.get('subscription') ?? '';
-
-    console.log(urlParams)
-    
     const subscription = JSON.parse(subscriptionString);
 
-    console.log(subscription)
+    await kv.lpush('subscriptions', subscription);
+
+    console.log('subscription added')
 
     return Response.json({
         hi: true
