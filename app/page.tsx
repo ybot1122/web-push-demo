@@ -4,6 +4,9 @@ import { useSw } from "./useSw";
 
 function showNotification() {
   Notification.requestPermission().then((result) => {
+
+    console.log(result)
+
     if (result === "granted") {
       navigator.serviceWorker.ready.then((registration) => {
         registration.showNotification("Vibration Sample", {
