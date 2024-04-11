@@ -1,3 +1,4 @@
+// @ts-ignore
 import webPush from 'web-push'
 
 export const dynamic = 'force-dynamic'
@@ -14,6 +15,8 @@ export async function POST(request: Request) {
     const payload = await request.json();
 
     console.log(payload)
+
+      // TODO get subscriptions from db
 
     await webPush.sendNotification(payload.subscription);
 
