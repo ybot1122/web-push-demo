@@ -17,9 +17,13 @@ export async function POST(request: Request) {
 
       const subs = await kv.lrange('subscriptions2',0,-1);
 
+      const payload = JSON.stringify({
+        doYou: 'seeme'
+      })
+
       const send = subs.map(async (s) => {
         try {
-          await webPush.sendNotification(s)
+          await webPush.sendNotification(s, payload)
           console.log('successfully sent notification')
         } catch (e) {
           console.error('failed to send notification')
