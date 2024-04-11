@@ -13,8 +13,13 @@ self.addEventListener('install', function(event) {
   // Register event listener for the 'push' event.
   self.addEventListener('push', function(event) {
     event.waitUntil(
+
+
       // Retrieve a list of the clients of this service worker.
       self.clients.matchAll().then(function(clientList) {
+
+        console.log(event);
+
         // Check if there's at least one focused client.
         var focused = clientList.some(function(client) {
           return client.focused;

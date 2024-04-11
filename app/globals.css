@@ -31,3 +31,12 @@ body {
     text-wrap: balance;
   }
 }
+
+button {
+  border: 2px black solid;
+  margin: 10px;
+}
+
+button:hover {
+  border: 2px silver solid;
+}

@@ -5,8 +5,8 @@ export const dynamic = 'force-dynamic'
 
 export async function POST(request: Request) {
 
-    webPush.setVapidDetails(
-        "https://example.com/",
+    await webPush.setVapidDetails(
+        "https://web-push-demo-virid.vercel.app/",
         process.env.VAPID_PUBLIC_KEY,
         process.env.VAPID_PRIVATE_KEY
       );
