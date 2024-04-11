@@ -19,8 +19,7 @@ export async function POST(request: Request) {
 
       const send = subs.map(async (s) => {
         try {
-          const subscription = JSON.parse(s);
-          await webPush.sendNotification(subscription)
+          await webPush.sendNotification(s)
           console.log('successfully sent notification')
         } catch (e) {
           console.error('failed to send notification')
