@@ -37,10 +37,10 @@ export default function Home() {
             'Content-type': 'application/json'
           },
           body: JSON.stringify({
-            subscription: subscription
+            clientFocus: true
           }),
         });
-      }}>Send Notification</button>
+      }}>Client Focus Notification</button>
     </main>
   );
 }

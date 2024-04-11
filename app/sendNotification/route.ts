@@ -7,6 +7,8 @@ export const dynamic = 'force-dynamic'
 
 export async function POST(request: Request) {
 
+  const body = await request.json();
+
     await webPush.setVapidDetails(
         "https://web-push-demo-virid.vercel.app/",
         process.env.VAPID_PUBLIC_KEY,
@@ -17,9 +19,7 @@ export async function POST(request: Request) {
 
       const subs = await kv.lrange('subscriptions2',0,-1);
 
-      const payload = JSON.stringify({
-        doYou: 'seeme'
-      })
+      const payload = JSON.stringify(body)
 
       const send = subs.map(async (s) => {
         try {
