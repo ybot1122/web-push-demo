@@ -15,12 +15,13 @@ export async function POST(request: Request) {
       
       console.log('sending notification...')
 
-      const subs = await kv.lrange('subscriptions',0,-1);
+      const subs = await kv.lrange('subscriptions2',0,-1);
 
       const send = subs.map(async (s) => {
         try {
-          await webPush.sendNotification(s)
-          console.error('successfully sent notification')
+          const subscription = JSON.parse(s);
+          await webPush.sendNotification(subscription)
+          console.log('successfully sent notification')
         } catch (e) {
           console.error('failed to send notification')
         }
