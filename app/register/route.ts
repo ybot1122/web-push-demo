@@ -21,20 +21,13 @@ export async function GET(request: Request) {
 
     // TODO: store the subscription
     const urlParams = new URLSearchParams(request.url);
-    const endpoint = urlParams.get('endpoint');
-    const p256dh = urlParams.get('p256dh');
-    const auth = urlParams.get('auth');
+    const subscriptionString:string = urlParams.get('subscription') ?? '';
+
+    console.log(urlParams)
     
-    const subscription = {
-        subscription: {
-            endpoint,
-            expirationTime: null,
-            keys: {
-                p256dh,
-                auth,
-            }
-        }
-    }
+    const subscription = JSON.parse(subscriptionString);
+
+    console.log(subscription)
 
     return Response.json({
         hi: true
