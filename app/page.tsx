@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react";
 import { useSw } from "./useSw";
 
 function showNotification() {
@@ -23,11 +24,15 @@ export default function Home() {
 
   const subscription = useSw();
 
+  const [key, setKey] = useState<string>();
+
   return (
     <main className="flex flex-col items-center justify-between p-24">
       <h1>Hello</h1>
 
     <button onClick={showNotification}>Local Noti</button>
+
+    <input type="text" placeholder="apikey" onChange={(e) => setKey(e.target.value)}></input>
 
       <button onClick={() => {
         fetch('./sendNotification', {
@@ -36,7 +41,8 @@ export default function Home() {
             'Content-type': 'application/json'
           },
           body: JSON.stringify({
-            clientFocus: true
+            clientFocus: true,
+            password: key,
           }),
         });
       }}>Client Focus Notification</button>
@@ -53,7 +59,8 @@ export default function Home() {
             body: 'Time to Watch Wish! \u2728',
             data: {
               href: '/movies/wish/2DhMv5u72nYs'
-            }
+            },
+            password: key,
           }),
         });
       }}>Wish!</button>
@@ -71,7 +78,8 @@ export default function Home() {
             body: 'Watch Bad Batch; Interact You Must.',
             data: {
               href: '/series/star-wars-the-bad-batch/4gMliqFxxqXC'
-            }
+            },
+            password: key,
           }),
         });
       }}>Bad Batch</button>
@@ -98,7 +106,8 @@ export default function Home() {
             data: {
               golive: '/play/a3344131-ce2b-49cc-976a-c0a6c848a300',
               details: '/browse/entity-7d918be0-4130-4551-aab8-c7dcae85d35f',
-            }
+            },
+            password: key,
           }),
         });
       }}>DWTS</button>
@@ -111,14 +120,43 @@ export default function Home() {
           },
           body: JSON.stringify({
             title: 'Finish Signing Up',
-            icon: 'https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/1B7FE678C10F1D17E95C75591E592485C79996758847E5ADB079590829B8ED5C/badging?width=400&aspectRatio=1.78&format=jpeg&label=disneyplusoriginal',
+            icon: 'https://web-push-demo-virid.vercel.app/bundlelogo.jpeg',
             body: 'Click here to finish signing up for the Disney Hulu Bundle',
             data: {
-              href: '/identity/sign-up/enter-email?pref=disney_bundle_duo_basic'
-            }
+              href: 'https://disneyplus.com/identity/sign-up/enter-email?pref=disney_bundle_duo_basic'
+            },
+            password: key,
           }),
         });
-      }}>Bad Batch</button>
+      }}>Sign up</button>
+
+
+<button onClick={() => {
+        fetch('./sendNotification', {
+          method: 'post',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            personal: true,
+            password: key,
+           }),
+        });
+      }}>Personal</button>
+
+<button onClick={() => {
+        fetch('./sendNotification', {
+          method: 'post',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            continue: true,
+            password: key,
+           }),
+        });
+      }}>Continue Watching</button>
+
 
 
 
