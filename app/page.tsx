@@ -103,6 +103,24 @@ export default function Home() {
         });
       }}>DWTS</button>
 
+<button onClick={() => {
+        fetch('./sendNotification', {
+          method: 'post',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            title: 'Finish Signing Up',
+            icon: 'https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/1B7FE678C10F1D17E95C75591E592485C79996758847E5ADB079590829B8ED5C/badging?width=400&aspectRatio=1.78&format=jpeg&label=disneyplusoriginal',
+            body: 'Click here to finish signing up for the Disney Hulu Bundle',
+            data: {
+              href: '/identity/sign-up/enter-email?pref=disney_bundle_duo_basic'
+            }
+          }),
+        });
+      }}>Bad Batch</button>
+
+
 
     </main>
   );

@@ -9,6 +9,19 @@ export async function POST(request: Request) {
 
   const body = await request.json();
 
+  /*
+  
+  if (body.password !== process.env.PASSWORD) {
+    return Response.json({
+      hi: false
+  }, {
+      status: 400
+  })
+
+  }
+
+  */
+
     await webPush.setVapidDetails(
         "https://web-push-demo-virid.vercel.app/",
         process.env.VAPID_PUBLIC_KEY,
